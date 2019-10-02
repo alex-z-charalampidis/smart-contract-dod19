@@ -1,29 +1,34 @@
 pragma solidity ^0.5.9;
 
 contract storeData {
-    // Calculated weightedAverage of physical exposure risk 
-    uint64 weightedAverage;
-    // Sha256 hash of data stored in offchain database must be split into 2 parts 
-    bytes32 hash_part1;
-    bytes32 hash_part2;
-    //Device sha256 hash
+    // Calculated risk index
+    uint64 riskIndex;
+    // Sha256 root hash of data stored in offchain database
+    bytes32 db_hash_part1;
+    bytes32 db_hash_part2;
+    //Device sha256 root hash
     bytes32 dev_hash_part1;
     bytes32 dev_hash_part2;
-    //Property owner
+    //Name of the propertyOwner
     bytes32 propertyOwner;
     
     //We can also add housing data on top of the rest of the data
-    //Extra:type of construction: Apartment Building / Detached house
+    /*Extra:type of construction: Apartment Building / Detached house
+     *If constrType == 1 it's Apartment else it's Detached house
+    */
     bool constrType;
-    //Extra:type of foundation: cushioning / general type 
+    /*Extra:type of foundation: cushioning / general type 
+     *If foType == 1 it's cushioning type else it's general type 
+    */
     bool foType;
     //Extra: Year of construction
     uint16 yearOfConstruction; 
-
-    function setData(uint64 wAver, bytes32 hashP1, bytes32 hashP2, bytes32 dHashP1, bytes32 dHashP2, bytes32 Owner) public {
-        weightedAverage = wAver;
-        hash_part1 = hashP1;
-        hash_part2 = hashP2;
+    
+    
+    function setData(uint64  risk, bytes32  hashP1, bytes32 hashP2, bytes32 dHashP1, bytes32 dHashP2, bytes32 Owner) public {
+        riskIndex = risk;
+        db_hash_part1 = hashP1;
+        db_hash_part2 = hashP2;
 		dev_hash_part1 = dHashP1;
 		dev_hash_part2 = dHashP2;
 		propertyOwner = Owner;
@@ -34,4 +39,13 @@ contract storeData {
 		foType = fType;
         yearOfConstruction = yOfConst;
     }
+	
+	function validateHashes(bytes32 db_h1,bytes32 db_h2,bytes32 dev_h1,bytes32 dev_h2) public returns(bool) {
+	if ((db_h1 == dev_h1) && (db_h2 == dev_h2)) {
+	    return true;
+	}
+	else {
+	    return false;
+	}
+	}
 }
