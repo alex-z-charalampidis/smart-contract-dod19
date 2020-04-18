@@ -39,6 +39,6 @@ $ ganache-cli --db chaindb/
 ```
 ##### 3) Open the file index.html located in the "src" file using your browser or on a new terminal within the same directory run
 ```sh
-$ suitable-browser ./src/index.html
+$ firefox ./src/index.html
 ```
 ![](./images/user_guide.gif)
