@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <script src="web3.js"></script>
+  <script src="web3_interface2.js"></script>
+  <script src="ethereumjs-tx.js"></script>
+  <style>
+    html, body { height: 100vh; padding: 0; margin: 0;}
+    * { outline: none !important; }
+    body { color: #454955; font: 15px/1.5 Verdana, Helvetica, Arial, sans-serif; }
+    h1, h2, h3, h4, h5, h6, b, th, strong, .nav-link { color: #777; }
+    input, button, div, pre, p { font: inherit; }
+    button {
+      color: white; padding: 0.4em 1em; border-radius: 0.3em;
+      border: none; cursor: pointer;
+    }
+    input[type=text] {
+      padding: 0.2em 0.7em; position: relative;
+      border: 2px solid #cdcdcd; border-color: rgba(0, 0, 0, .15);
+      background-color: white; font-size: 16px;
+    }
+    h1 { margin: 0; padding-top: 0.5em; text-align: center; }
+    .container { padding: 0 1em; margin: 1em auto; max-width: 480px; background: #fafafa; }
+    .form-control { margin: 0.5em 0; }
+    .form-control input, .form-control button { min-width: 15em; }
+    .form label { min-width: 8em; display: inline-block; }
+    .form { padding: 1em 0; }
+    .btn { background: #b71b1b; }
+    .btn_done { background: #66a3ff; }
+    .spin {
+      display: inline-block; width: 0.9em; height: 0.9em;
+      margin-bottom: -0.2em; 
+      border: 0.15em solid rgba(255,255,255,.5);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s linear infinite;
+      -webkit-animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }
+  </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="">Contract reader</h1>
+      <div class="form">
+        <div class="">
+	  <div class="form-control">
+	    <label>Transaction Hash:</label>
+            <input type="text" id="tx">
+	  </div>
+          <div class="form-control">
+            <label>Risk index:</label>
+            <output type="text" id="rIndex"></output>
+          </div>
+          <div class="form-control">
+            <label>Hash P1:</label>
+            <output type="text" id="hashP1"></output>
+          </div>
+          <div class="form-control">
+            <label>Hash P2:</label>
+            <output type="text" id="hashP2"></output>
+          </div>
+          <div class="form-control">
+            <label>DB hash P1:</label>
+            <output type="text" id="dHashP1"></output>
+          </div>
+          <div class="form-control">
+            <label>DB hash P2:</label>
+            <output type="text" id="dHashP2"></output>
+          </div>
+          <div class="form-control">
+            <label>Owner:</label>
+            <output type="text" id="owner"></output>
+          </div>
+          <div class="form-control">
+            <label></label>
+            <button class="btn" id="save">
+              <span id="spinner"></span>
+              Fetch data from the blockchain
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- config needs to change to variables-->
+    <script>
+    var saveButton = document.getElementById('save');
+    var spinnerSpan = document.getElementById('spinner');
+    saveButton.onclick = function() {
+    saveButton.className = btn;
+    spinnerSpan.className = 'spin';
+    var tx = document.getElementById('tx').value;
+    //Variable is asynchronous! Important to remember
+    var contract_values = web3_retrieve(tx).then(values => {
+        document.getElementById('rIndex').value = values[0];
+        document.getElementById('hashP1').value = values[1];
+        document.getElementById('hashP2').value = values[2];
+        document.getElementById('dHashP1').value = values[3];
+        document.getElementById('dHashP2').value = values[4];
+        document.getElementById('owner').value = values[5];
+
+    });
+
+};
+  </script>
+  </body>
+</html>

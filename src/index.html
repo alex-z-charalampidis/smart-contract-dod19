@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8"></meta>
+  <head>
+  <script src="web3.js"></script>
+  <script src="web3_interface.js"></script>
+  <script src="ethereumjs-tx.js"></script>
+  <style>
+    html, body { height: 100vh; padding: 0; margin: 0;}
+    * { outline: none !important; }
+    body { color: #454955; font: 15px/1.5 Verdana, Helvetica, Arial, sans-serif; }
+    h1, h2, h3, h4, h5, h6, b, th, strong, .nav-link { color: #777; }
+    input, button, div, pre, p { font: inherit; }
+    button {
+      color: white; padding: 0.4em 1em; border-radius: 0.3em;
+      border: none; cursor: pointer;
+    }
+    input[type=text] {
+      padding: 0.2em 0.7em; position: relative;
+      border: 2px solid #cdcdcd; border-color: rgba(0, 0, 0, .15);
+      background-color: white; font-size: 16px;
+    }
+    h1 { margin: 0; padding-top: 0.5em; text-align: center; }
+    .container { padding: 0 1em; margin: 1em auto; max-width: 480px; background: #fafafa; }
+    .form-control { margin: 0.5em 0; }
+    .form-control input, .form-control button { min-width: 15em; }
+    .form label { min-width: 8em; display: inline-block; }
+    .form { padding: 1em 0; }
+    .btn { background: #b71b1b; }
+    .btn_done { background: #66a3ff; }
+    .spin {
+      display: inline-block; width: 0.9em; height: 0.9em;
+      margin-bottom: -0.2em; 
+      border: 0.15em solid rgba(255,255,255,.5);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s linear infinite;
+      -webkit-animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } }
+  </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="">Contract setup</h1>
+      <div class="form" accept-charset="UTF-8">
+        <div class="">
+          <div class="form-control">
+            <label>Risk index:</label>
+            <input type="text" id="rIndex">
+          </div>
+          <div class="form-control">
+            <label>Hash P1:</label>
+            <input type="text" id="hashP1">
+          </div>
+          <div class="form-control">
+            <label>Hash P2:</label>
+            <input type="text" id="hashP2">
+          </div>
+          <div class="form-control">
+            <label>DB hash P1:</label>
+            <input type="text" id="dHashP1">
+          </div>
+          <div class="form-control">
+            <label>DB hash P2:</label>
+            <input type="text" id="dHashP2">
+          </div>
+          <div class="form-control">
+            <label>Owner:</label>
+            <input type="text" id="owner">
+          </div>
+          <div class="form-control">
+            <label></label>
+            <button class="btn" id="save">
+              <span id="spinner"></span>
+              Publish data on blockchain
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- config needs to change to variables-->
+    <script>
+    var saveButton = document.getElementById('save');
+    var spinnerSpan = document.getElementById('spinner');
+    saveButton.onclick = function() {
+      spinnerSpan.className = 'spin';
+      var riskIndex = document.getElementById('rIndex').value || '';
+      var hashPart1 = document.getElementById('hashP1').value || '';
+      var hashPart2 = document.getElementById('hashP2').value || '';
+      var dbHashP1 = document.getElementById('dHashP1').value || '';
+      var dbHashP2 = document.getElementById('dHashP2').value || '';
+      var ownr = document.getElementById('owner').value || '';
+      var send_tx = web3_interface(riskIndex,hashPart1,hashPart2,dbHashP1,dbHashP2,ownr);
+      if (send_tx == 1) {
+         saveButton.className = 'btn_done';
+	 spinnerSpan.className = null;
+      } else if (send_tx == 0) { 
+         spinnerSpan.classname = null;
+         alert("Transaction failed, please try again");
+      }
+    };
+  </script>
+  </body>
+</html>
