@@ -13,16 +13,16 @@ git clone https://github.com/alex-z-charalampidis/smart-contract-dod19.git && cd
 ```
 #### > Manual installation ![](./images/manual.png)
 ##### **In order to run the example the following 3 need to be installed in the host system:** 
-##### 1) NodeJS ![alt text](https://github.com/alex-z-charalampidis/smart-contract-dod19/blob/master/images/nodejs.png?raw=true"NodeJS")
-```sh
+##### 1) NodeJS ![](./images/nodejs.png)
+```s
 $ sudo apt-get update 
 $ sudo apt-get install nodejs
 ```
-##### 2) Truffle ![alt text](https://github.com/alex-z-charalampidis/smart-contract-dod19/blob/master/images/truffle.png?raw=true "Truffle")
+##### 2) Truffle ![](./images/truffle.png)
 ```sh
 $ npm install -g truffle
 ```
-##### 3) Ganache ![alt text](https://github.com/alex-z-charalampidis/smart-contract-dod19/blob/master/images/ganache.png?raw=true "Ganache-cli")
+##### 3) Ganache ![](./images/ganache.png?)
 ```sh
 $ npm install -g ganache-cli
 ```
