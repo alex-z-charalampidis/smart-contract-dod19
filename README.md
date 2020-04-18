@@ -41,3 +41,4 @@ $ ganache-cli --db chaindb/
 ```sh
 $ suitable-browser ./src/index.html
 ```
+![](./images/user_guide.gif)
