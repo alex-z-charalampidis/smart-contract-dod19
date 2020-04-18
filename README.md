@@ -1,4 +1,4 @@
-# Smart Contract
+# Smart contract of "Land Property Data Logging on Blockchain Ledger"
 ## Description
 ---
 ##### Online repo of Smart contract used in paper "Land Property Data Logging on Blockchain Ledger" presented in 4th International Conference On Dynamics Of Disasters..
