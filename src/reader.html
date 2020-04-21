@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
   <script src="web3.js"></script>
-  <script src="web3_interface2.js"></script>
+  <script src="web3_interface.js"></script>
   <script src="ethereumjs-tx.js"></script>
   <style>
     html, body { height: 100vh; padding: 0; margin: 0;}
@@ -88,7 +88,7 @@
     var saveButton = document.getElementById('save');
     var spinnerSpan = document.getElementById('spinner');
     saveButton.onclick = function() {
-    saveButton.className = btn;
+    saveButton.className = 'btn';
     spinnerSpan.className = 'spin';
     var tx = document.getElementById('tx').value;
     //Variable is asynchronous! Important to remember
@@ -99,7 +99,8 @@
         document.getElementById('dHashP1').value = values[3];
         document.getElementById('dHashP2').value = values[4];
         document.getElementById('owner').value = values[5];
-
+        spinnerSpan.className = 'spin';
+        saveButton.className = 'btn';
     });
 
 };
