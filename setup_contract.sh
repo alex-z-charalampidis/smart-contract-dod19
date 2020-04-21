@@ -54,9 +54,10 @@ tmux send-keys -t "$session_id" 'ganache-cli --db chaindb/' C-m
 #tmux send-keys -t truffle 'truffle comple && truffle develop' C-m
 #tmux send-keyes -t truffle 'migrate' C-m
 #truffle compile && truffle develop
-#3.Running index.html
-printf "Launching index.html. If it's not launched please open src/index.html in your browser\n"
-sudo -u $SUDO_USER sensible-browser ./src/index.html 
+#3.Running index.html && reader.html
+printf "Launching reader && index.html. If it's not launched please open src/index.html && reader.html in your browser\n"
+sudo -u $SUDO_USER sensible-browser ./src/reader.html 
+sudo -u $SUDO_USER sensible-browser ./src/index.html
 #Trap Ctrl signal
 #Ctrl+C
 trap 'tmux kill-session -t '"$session_id"  SIGINT
