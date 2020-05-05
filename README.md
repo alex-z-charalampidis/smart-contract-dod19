@@ -1,8 +1,8 @@
-# Smart contract of "Land Property Data Logging on Blockchain Ledger"
+# Smart contract of "Land Property Data Logging on Blockchain Ledger" and example running on eth
 
 ## Description
 
-##### Online repo of Smart contract used in paper "Land Property Data Logging on Blockchain Ledger" presented in 4th International Conference On Dynamics Of Disasters.
+#### Online repo of Smart contract used in paper "Land Property Data Logging on Blockchain Ledger" presented in 4th International Conference On Dynamics Of Disasters.
 On this executable example you will quickly run a web interace for the blockchain example application.The functional diagram of the example is seen in the figure below.
 
 ![](./images/cloud.png)
